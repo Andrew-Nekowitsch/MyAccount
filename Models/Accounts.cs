@@ -14,5 +14,10 @@ namespace MyAccount.Models
 		public string[] Filters { get; set; }
 
 		public string Password { get; set; }
+		/* 
+		public string email { get; set; }
+		public string phone { get; set; }
+		public int role { get; set; }
+		 */
 	}
 }
