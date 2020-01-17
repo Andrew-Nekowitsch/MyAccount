@@ -27,7 +27,7 @@ namespace MyAccount.Controllers
             return this.accountsRepository.GetAllAccounts();
         }
 
-        // GET: api/Accounts/5
+        // GET: api/Accounts/#
         [HttpGet("{id}", Name = "Get")]
         public Accounts Get(int id)
         {
@@ -46,7 +46,7 @@ namespace MyAccount.Controllers
         {
         }
 
-        // PUT: api/Accounts/5
+        // PUT: api/Accounts/#
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
