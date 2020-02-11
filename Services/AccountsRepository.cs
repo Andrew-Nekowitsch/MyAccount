@@ -30,7 +30,7 @@ namespace MyAccount.Services
                 {
                     Id = 3,
                     Name = "Patrick Van Landschoot",
-                    Password = "SchoolShooter",
+                    Password = "LandShooter",
                     Filters = new string[] {"Carnivore"}
                 },
                 new Accounts
