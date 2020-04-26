@@ -8,39 +8,22 @@ namespace MyAccount.Services
 {
 	public class AccountsRepository
 	{
-        public Accounts[] GetAllAccounts()
+        public Account[] GetAllAccounts()
         {
-            return new Accounts[]
+            return new Account[]
             {
-                new Accounts
-                {
-                    Id = 1,
-                    Name = "Andrew Nekowitsch",
-                    Password = "NeckOfWitch",
-                    Filters = null
-                },
-                new Accounts
-                {
-                    Id = 2,
-                    Name = "Grant Lalonde",
-                    Password = "LaLaLand",
-                    Filters = new string[] {"Gluten-Free"}
-                },
-                new Accounts
-                {
-                    Id = 3,
-                    Name = "Patrick Van Landschoot",
-                    Password = "LandShooter",
-                    Filters = new string[] {"Carnivore"}
-                },
-                new Accounts
-                {
-                    Id = 4,
-                    Name = "Mark Selyukov",
-                    Password = "SuckYouOff",
-                    Filters = new string[] {"Vegen"}
-                },
+                new Account(1, null),
+                new Account(2, new string[] {"Gluten-Free"}),
+                new Account(3, new string[] {"Carnivore"}),
+                new Account(4, new string[] {"Vegen"}),
             };
         }
+
+		public Account RetrieveAccount(int id)
+		{
+			//query db
+			string[] filters = {"",""};
+			return new Account(id, filters);
+		}
     }
 }
