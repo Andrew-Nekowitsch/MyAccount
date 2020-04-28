@@ -7,12 +7,12 @@ namespace MyAccount.Models
 {
 	public class Account
 	{
-		public int Id { get; set; }
+		public string Id { get; set; }
 		public string[] Filters { get; set; }
 
-		public Account(int identificationNumber, string[] filterList)
+		public Account(string identifier, string[] filterList)
 		{
-			this.Id = identificationNumber;
+			this.Id = identifier;
 			this.Filters = filterList;
 		}
 

@@ -13,16 +13,11 @@ namespace MyAccount.Controllers {
 	[ApiController]
 	public class AccountsController : ControllerBase {
 		private AccountsRepository accountsRepository;
-		string connStr = "Server=tcp:cc-accounts.database.windows.net,1433;Initial Catalog=accounts;Persist Security Info=False;User ID=CCMyAccount;Password=CC-MyAccount;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-		SqlConnection sqlConnection;
 
 		string filers;
 
 		public AccountsController () {
 			this.accountsRepository = new AccountsRepository ();
-			var conn = new SqlConnection (connStr);
-			this.sqlConnection = conn;
-			this.sqlConnection.Open ();
 		}
 
 		// GET: api/Accounts
@@ -33,32 +28,26 @@ namespace MyAccount.Controllers {
 
 		// GET: api/Accounts/#
 		[HttpGet ("{id}", Name = "Get")]
-		public Account Get (int id) { 
-
-			using (SqlCommand command = new SqlCommand ("SELECT * FROM account where id=" + id + ";", sqlConnection)) {
-				using (SqlDataReader reader = command.ExecuteReader ()) {
-					while (reader.Read ()) {
-						if(id == reader.GetInt32(0))
-							return new Account (reader.GetInt32(0), reader.GetString (1).Split(","));
-					}
-					//Console.ReadLine ();
-				}
-			}
-			return new Account (id, new string[] { "Get(int id)" });
+		public Account Get (string id) { 
+			return accountsRepository.RetrieveAccount(id);
 		}
 
 		// POST: api/Accounts
 		[HttpPost]
-		public void Post ([FromBody] string value) { 
-			
+		public void Post (string id, string filters) { 
+			accountsRepository.createAccount(id, filters);
 		}
 
 		// PUT: api/Accounts/#
 		[HttpPut ("{id}")]
-		public void Put (int id, [FromBody] string value) { }
+		public void Put (string id, string filters) { 
+
+		}
 
 		// DELETE: api/ApiWithActions/5
 		[HttpDelete ("{id}")]
-		public void Delete (int id) { }
+		public void Delete (string id) { 			
+			accountsRepository.deleteAccount(id);
+		}
 	}
 }
