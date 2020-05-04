@@ -27,19 +27,28 @@ namespace MyAccount.Services {
 		}
 
 		public Account RetrieveAccount (string id) {
-			using (SqlCommand command = new SqlCommand ("SELECT * FROM account where id=" + id + ";", sqlConnection)) {
-				using (SqlDataReader reader = command.ExecuteReader ()) {
-					while (reader.Read ()) {
-						if (id == reader.GetString (0))
-							return new Account (reader.GetString (0), reader.GetString (1).Split (","));
+			try {
+				using (SqlCommand command = new SqlCommand ("SELECT * FROM account where id=" + id + ";", sqlConnection)) {
+					using (SqlDataReader reader = command.ExecuteReader ()) {
+						while (reader.Read ()) {
+							if (id == reader.GetString (0))
+								return new Account (reader.GetString (0), reader.GetString (1).Split (","));
+						}
 					}
 				}
+			} catch (Exception e) {
+				return new Account ("404", new string[] { "Couldn't find account with id=" + id });
 			}
 			return new Account ("404", new string[] { "Couldn't find account with id=" + id });
 		}
 
 		public void createAccount (string id, string filters) {
 			SqlCommand command = new SqlCommand ("INSERT into account values ('" + id + "', '" + filters + "');", sqlConnection);
+			command.ExecuteNonQuery ();
+		}
+
+		public void updateAccount (string id, string filters) {
+			SqlCommand command = new SqlCommand ("UPDATE Customers SET filters = '" + filters + "' WHERE CustomerID = " + id + ";", sqlConnection);
 			command.ExecuteNonQuery ();
 		}
 

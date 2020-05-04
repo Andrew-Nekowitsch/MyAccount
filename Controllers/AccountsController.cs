@@ -32,7 +32,7 @@ namespace MyAccount.Controllers {
 			return accountsRepository.RetrieveAccount(id);
 		}
 
-		// POST: api/Accounts
+		// POST: api/Accounts/
 		[HttpPost]
 		public void Post (string id, string filters) { 
 			accountsRepository.createAccount(id, filters);
@@ -41,7 +41,7 @@ namespace MyAccount.Controllers {
 		// PUT: api/Accounts/#
 		[HttpPut ("{id}")]
 		public void Put (string id, string filters) { 
-
+			accountsRepository.updateAccount(id, filters);
 		}
 
 		// DELETE: api/ApiWithActions/5
