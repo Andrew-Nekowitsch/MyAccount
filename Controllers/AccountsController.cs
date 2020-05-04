@@ -39,7 +39,7 @@ namespace MyAccount.Controllers {
 		}
 
 		// PUT: api/Accounts/#
-		[HttpPut ("{id}")]
+		[HttpPut]
 		public void Put (string id, string filters) { 
 			accountsRepository.updateAccount(id, filters);
 		}

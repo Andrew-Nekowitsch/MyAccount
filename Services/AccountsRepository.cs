@@ -48,7 +48,7 @@ namespace MyAccount.Services {
 		}
 
 		public void updateAccount (string id, string filters) {
-			SqlCommand command = new SqlCommand ("UPDATE Customers SET filters = '" + filters + "' WHERE CustomerID = " + id + ";", sqlConnection);
+			SqlCommand command = new SqlCommand ("UPDATE account SET filters = '" + filters + "' WHERE id = " + id + ";", sqlConnection);
 			command.ExecuteNonQuery ();
 		}
 
